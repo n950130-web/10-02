@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World - Modern & Interactive</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            500: '#06b6d4',
+                            600: '#0284c7',
+                        }
+                    },
+                    animation: {
+                        'gradient-x': 'gradient-x 8s ease infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        'gradient-x': {
+                            '0%, 100%': { 'background-size': '200% 200%', 'background-position': 'left center' },
+                            '50%': { 'background-size': '200% 200%', 'background-position': 'right center' },
+                        },
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Font Inter & Lucida/Fira Code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            user-select: none;
+        }
+        
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* Interactive Particle effect element styling */
+        .click-particle {
+            position: absolute;
+            pointer-events: none;
+            animation: particle-pop 0.8s ease-out forwards;
+        }
+
+        @keyframes particle-pop {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tw-translate-x), var(--tw-translate-y)) scale(0) rotate(180deg);
+            }
+        }
+
+        /* Glassmorphism style */
+        .glass-card {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="min-h-screen transition-colors duration-500 bg-slate-900 text-slate-100 dark:bg-slate-950 dark:text-slate-100 selection:bg-cyan-500 selection:text-white relative flex flex-col justify-between">
+
+    <!-- Background Animated Gradient & Glow -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div class="absolute top-1/2 -right-40 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+        <div class="absolute -bottom-40 left-1/3 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Header Controls -->
+    <header class="relative z-10 w-full max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-indigo-500 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-cyan-500/20">
+                &lt;/&gt;
+            </div>
+            <span class="font-semibold text-sm tracking-wider uppercase text-slate-400 dark:text-slate-400">Interactive App</span>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <!-- Theme Toggle Button -->
+            <button id="themeToggle" class="p-2.5 rounded-full bg-slate-800/60 border border-slate-700/50 hover:bg-slate-700/60 dark:bg-slate-800/80 dark:border-slate-700 dark:hover:bg-slate-700 text-slate-300 hover:text-white transition-all duration-300 shadow-md flex items-center justify-center">
+                <i id="themeIcon" class="fas font-medium"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="relative z-10 flex-1 flex flex-col items-center justify-center px-4 py-12 text-center" id="interactiveArea">
+        <div class="max-w-3xl mx-auto">
+            
+            <!-- Floating Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-700/50 bg-slate-800/40 dark:bg-slate-900/60 glass-card text-xs md:text-sm font-medium text-cyan-400 mb-8 animate-float shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                <span>Hello, World! Welcome to the browser.</span>
+            </div>
+
+            <!-- Gradient Heading -->
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-6 bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent animate-gradient-x select-none">
+                Hello World!
+            </h1>
+
+            <p class="text-base md:text-xl text-slate-400 dark:text-slate-400 max-w-xl mx-auto mb-10 leading-relaxed font-light">
+                一個優雅、現代且具備互動體驗的網頁範例。點擊螢幕任何地方來體驗微動畫互動！
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-4 mb-12">
+                <button id="greetBtn" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-semibold shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center gap-2">
+                    <i class="fas fa-sparkles"></i>
+                    <span>發送打招呼</span>
+                </button>
+                
+                <button id="codeBtn" class="px-8 py-3.5 rounded-xl border border-slate-700/60 bg-slate-800/40 hover:bg-slate-800/80 dark:bg-slate-900/50 dark:hover:bg-slate-800/80 text-slate-300 hover:text-white font-semibold backdrop-blur-md transition-all duration-200 flex items-center gap-2">
+                    <i class="fas fa-code"></i>
+                    <span>查看原始碼</span>
+                </button>
+            </div>
+
+            <!-- Interactive Message Box (Hidden by default) -->
+            <div id="messageCard" class="hidden max-w-md mx-auto p-4 rounded-xl border border-cyan-500/30 bg-slate-800/60 glass-card text-cyan-300 text-sm animate-float transition-all duration-300">
+                <div class="flex items-center justify-between">
+                    <span class="flex items-center gap-2">
+                        <i class="fas fa-heart text-pink-500"></i>
+                        <span id="messageText">很高興認識你！希望你有美好的一天。</span>
+                    </span>
+                    <button id="closeMsg" class="text-slate-400 hover:text-white">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Code Preview Display Box -->
+            <div id="codeCard" class="hidden max-w-xl mx-auto mt-6 text-left rounded-xl border border-slate-800 bg-slate-900/90 shadow-2xl overflow-hidden transition-all duration-300">
+                <div class="bg-slate-800/80 px-4 py-2 flex items-center justify-between border-b border-slate-700/50">
+                    <div class="flex gap-1.5">
+                        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                    </div>
+                    <span class="text-xs text-slate-400 code-font">index.html</span>
+                    <button id="copyCodeBtn" class="text-xs text-slate-400 hover:text-cyan-400 transition-colors flex items-center gap-1">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                </div>
+                <pre class="p-4 text-xs md:text-sm text-cyan-300 code-font overflow-x-auto"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Hello World&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello World!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 w-full text-center py-6 border-t border-slate-800/40 text-xs text-slate-500 dark:text-slate-500">
+        <p>Crafted with HTML5, Tailwind CSS & JavaScript</p>
+    </footer>
+
+    <script>
+        // Theme Management
+        const html = document.documentElement;
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+
+        // Check user/system theme preference
+        function initTheme() {
+            const isDark = localStorage.getItem('theme') === 'dark' || 
+                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            
+            if (isDark) {
+                html.classList.add('dark');
+                themeIcon.className = 'fas fa-sun text-amber-400';
+            } else {
+                html.classList.remove('dark');
+                themeIcon.className = 'fas fa-moon text-indigo-400';
+            }
+        }
+
+        themeToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // prevent particle trigger
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                themeIcon.className = 'fas fa-moon text-indigo-400';
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.className = 'fas fa-sun text-amber-400';
+            }
+        });
+
+        // Initialize Theme on load
+        initTheme();
+
+        // UI Interactive Elements
+        const greetBtn = document.getElementById('greetBtn');
+        const codeBtn = document.getElementById('codeBtn');
+        const messageCard = document.getElementById('messageCard');
+        const messageText = document.getElementById('messageText');
+        const closeMsg = document.getElementById('closeMsg');
+        const codeCard = document.getElementById('codeCard');
+        const copyCodeBtn = document.getElementById('copyCodeBtn');
+
+        const greetings = [
+            "很高興認識你！希望你有美好的一天 ✨",
+            "你好，世界！網頁程式設計真有意思 🚀",
+            "Welcome to the world of web design! 🌍",
+            "點擊螢幕任何地方，可以產生絢麗小星光喔！ 🌟"
+        ];
+
+        greetBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const randomMsg = greetings[Math.floor(Math.random() * greetings.length)];
+            messageText.innerText = randomMsg;
+            messageCard.classList.remove('hidden');
+        });
+
+        closeMsg.addEventListener('click', (e) => {
+            e.stopPropagation();
+            messageCard.classList.add('hidden');
+        });
+
+        codeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            codeCard.classList.toggle('hidden');
+        });
+
+        copyCodeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const codeText = `<!DOCTYPE html>\n<html>\n  <head>\n    <title>Hello World</title>\n  </head>\n  <body>\n    <h1>Hello World!</h1>\n  </body>\n</html>`;
+            
+            // Clipboard Fallback Strategy
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(codeText);
+            } else {
+                const textArea = document.createElement('textarea');
+                textArea.value = codeText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+            }
+
+            const originalHTML = copyCodeBtn.innerHTML;
+            copyCodeBtn.innerHTML = `<i class="fas fa-check text-green-400"></i> Copied!`;
+            setTimeout(() => {
+                copyCodeBtn.innerHTML = originalHTML;
+            }, 2000);
+        });
+
+        // Particle Visual Feedback on Click
+        const interactiveArea = document.body;
+        const particleIcons = ['✨', '⭐', '🌟', '💫', '⚡', '✦'];
+
+        interactiveArea.addEventListener('click', (e) => {
+            createParticles(e.clientX, e.clientY);
+        });
+
+        function createParticles(x, y) {
+            const count = 6;
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('span');
+                particle.className = 'click-particle text-sm select-none z-50';
+                particle.innerText = particleIcons[Math.floor(Math.random() * particleIcons.length)];
+
+                // Calculate random trajectory
+                const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5);
+                const distance = 40 + Math.random() * 50;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                particle.style.setProperty('--tw-translate-x', `${tx}px`);
+                particle.style.setProperty('--tw-translate-y', `${ty}px`);
+
+                document.body.appendChild(particle);
+
+                setTimeout(() => {
+                    particle.remove();
+                }, 800);
+            }
+        }
+    </script>
+</body>
+</html>
